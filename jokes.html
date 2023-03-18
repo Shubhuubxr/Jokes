@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Jokes</title>
+</head>
+<body>
+
+    <style>
+/* CSS */
+.btn{
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(241, 132, 132, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn:after {
+  content: "";
+  background-color: #ffe54c;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+.btn:hover:after {
+  top: 0px;
+  left: 0px;
+}
+
+@media (min-width: 768px) {
+  .button-52 {
+    padding: 13px 50px 13px;
+  }
+}
+
+body {
+        background-color: #6ef58e;
+      }
+/* 
+      .container {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      } */
+      
+    </style>
+    <div class="container">
+        <h3> Best Jokes To Make Your Day</h3>
+        <div id="joke" class="joke">Awesome Jokes Is Loading ....</div>
+        <button id="jokebtn" class="btn">
+            Next Jokes
+        </button>
+    </div>
+
+    <script>
+        // what is Promise
+        // either condition get true or get false 
+        // either we get data or we can noot get data
+
+        // fulfilled(suscees) 
+        // reject(fail)
+// 90% times we can only consume by using promise 
+        // promise can be returned whwn we fetch Api 
+
+
+        const Jokes = document.querySelector('#joke');
+        const button = document.querySelector('#jokebtn');
+
+
+        const genratejokes = () =>{
+            const setHeader = {
+                headers:{
+                    Accept : "application/json"
+                }
+            }
+
+            fetch('https://icanhazdadjoke.com/' , setHeader)
+
+            .then((res) => res.json())
+            .then((data) => {
+                Jokes.innerHTML = data.joke;
+            })
+            
+            .catch((error) => {
+                console.log(error);
+            })
+        }
+
+        jokebtn.addEventListener('click' , genratejokes);
+        genratejokes();
+
+
+
+    </script>
+</body>
+
+</html>
